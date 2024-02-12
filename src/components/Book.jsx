@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Book = (props) => {
     const bookData = props.props;
     
     const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate();
 
     async function onPurchase(e) {
         e.preventDefault();
@@ -24,6 +26,7 @@ const Book = (props) => {
             
             if (response.status === 200) {
                 alert(data.message);
+                navigate('/profile')
             } else {
                 alert(data.error)
                 console.error('', data.status);
